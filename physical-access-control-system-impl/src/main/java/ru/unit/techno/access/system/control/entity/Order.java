@@ -1,6 +1,7 @@
 package ru.unit.techno.access.system.control.entity;
 
 import lombok.Data;
+import ru.unit.techno.access.system.control.enums.StatusType;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -10,7 +11,6 @@ import java.sql.Timestamp;
 @Table(name = "orders")
 @SequenceGenerator(name = "squd_order_id_seq", sequenceName = "squd_order_id_seq")
 public class Order {
-    private static enum status_types {created, in_progress, done, canceled}
 
     @Id
     @Column(name = "order_id")
@@ -28,6 +28,5 @@ public class Order {
     private Double realWeight;
 
     @Enumerated (EnumType.STRING)
-    status_types status;
-
+    StatusType status;
 }
