@@ -7,6 +7,7 @@ public enum StatusType {
     CANCELED("отменен");
 
     private String status;
+
     StatusType(String status) {
         this.status = status.toUpperCase();
     }

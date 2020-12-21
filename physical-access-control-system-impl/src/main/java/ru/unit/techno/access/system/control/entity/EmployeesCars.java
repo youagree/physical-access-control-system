@@ -2,8 +2,10 @@ package ru.unit.techno.access.system.control.entity;
 
 import lombok.Data;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Data

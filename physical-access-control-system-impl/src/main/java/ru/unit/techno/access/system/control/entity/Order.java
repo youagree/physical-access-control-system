@@ -3,7 +3,15 @@ package ru.unit.techno.access.system.control.entity;
 import lombok.Data;
 import ru.unit.techno.access.system.control.enums.StatusType;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.sql.Timestamp;
 
 @Entity
@@ -27,6 +35,6 @@ public class Order {
     @Column(name = "real_weight")
     private Double realWeight;
 
-    @Enumerated (EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     StatusType status;
 }

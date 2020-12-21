@@ -2,11 +2,17 @@ package ru.unit.techno.access.system.control.entity;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
 @Data
-@Table (name = "cars")
+@Table(name = "cars")
 @SequenceGenerator(name = "squd_car_id_seq", sequenceName = "squd_car_id_seq")
 public class Car {
     @Id
@@ -15,7 +21,7 @@ public class Car {
     private Long id;
 
     //todo Подумать над типом и названием
-    @Column (name = "rfid_information")
+    @Column(name = "rfid_information")
     private Long rfidInformation;
 
     @Column(name = "order_number")
