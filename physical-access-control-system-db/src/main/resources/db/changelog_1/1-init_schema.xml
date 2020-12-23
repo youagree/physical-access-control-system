@@ -2,5 +2,133 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    
+
+  <changeSet id="2020-12-23-create-sequence-car" author="ESV">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <sequenceExists sequenceName="squd_car_id_seq"/>
+      </not>
+    </preConditions>
+    <createSequence sequenceName="squd_car_id_seq" incrementBy="50"/>
+  </changeSet>
+
+  <changeSet id="2020-12-23-create-table-cars" author="ESV">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <tableExists tableName="cars"/>
+      </not>
+    </preConditions>
+    <createTable tableName="cars">
+      <column name="car_id" type="BIGINT">
+        <constraints nullable="false" primaryKey="true"/>
+      </column>
+      <column name="rfid_information" type="BIGINT"/>
+      <column name="order_number" type="INT"/>
+      <column name="car_on_the_territory" type="BOOLEAN"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="2020-12-23-create-sequence-employee" author="ESV">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <sequenceExists sequenceName="squd_employee_id_seq"/>
+      </not>
+    </preConditions>
+    <createSequence sequenceName="squd_employee_id_seq" incrementBy="50"/>
+  </changeSet>
+
+  <changeSet id="2020-12-23-create-table-employee" author="ESV">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <tableExists tableName="employee"/>
+      </not>
+    </preConditions>
+    <createTable tableName="employee">
+      <column name="employee_id" type="BIGINT">
+        <constraints nullable="false" primaryKey="true"/>
+      </column>
+      <column name="name" type="VARCHAR(255)"/>
+      <column name="surname" type="VARCHAR(255)"/>
+      <column name="personal_number" type="BIGINT"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet author="ESV" id="2020-12-23-create-table-employees_cars">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <tableExists tableName="employees_cars"/>
+      </not>
+    </preConditions>
+    <createTable tableName="employees_cars">
+      <column name="car_id" type="INT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="employee_id" type="INT">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet author="ESV" id="2020-12-23-addPrimaryKey-employees_cars">
+    <addPrimaryKey
+      columnNames="car_id, employee_id"
+      constraintName="pk_employees_cars"
+      tableName="employees_cars"/>
+  </changeSet>
+
+  <changeSet id="2020-12-23-create-sequence-order" author="ESV">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <sequenceExists sequenceName="squd_order_id_seq"/>
+      </not>
+    </preConditions>
+    <createSequence sequenceName="squd_order_id_seq" incrementBy="50"/>
+  </changeSet>
+
+  <changeSet id="2020-12-23-create-table-order" author="ESV">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <tableExists tableName="order"/>
+      </not>
+    </preConditions>
+    <createTable tableName="order">
+      <column name="order_id" type="BIGINT">
+        <constraints nullable="false" primaryKey="true"/>
+      </column>
+      <column name="creation_time" type="TIMESTAMP"/>
+      <column name="order_weight" type="DOUBLE"/>
+      <column name="real_weight" type="DOUBLE"/>
+      <column name="status" type="ENUM('CREATED','IN_PROGRESS','DONE','CANCELED')"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet author="ESV" id="employees_cars-createIndexes">
+    <createIndex indexName="fk_employees_cars_employee_id" tableName="employees_cars">
+      <column name="employee_id"/>
+    </createIndex>
+    <createIndex indexName="fk_employees_cars_car_id" tableName="employees_cars">
+      <column name="car_id"/>
+    </createIndex>
+    <comment>employees_cars table</comment>
+  </changeSet>
+
+  <changeSet author="ESV" id="employees_cars-fk-1">
+    <addForeignKeyConstraint baseColumnNames="employee_id"
+      baseTableName="employees_cars"
+      constraintName="fk_employees_cars_employee_id"
+      onDelete="NO ACTION"
+      onUpdate="NO ACTION"
+      referencedColumnNames="employee_id"
+      referencedTableName="employee"/>
+  </changeSet>
+  <changeSet author="ESV" id="employees_cars-fk-2">
+    <addForeignKeyConstraint baseColumnNames="car_id"
+      baseTableName="employees_cars"
+      constraintName="fk_employees_cars_car_id"
+      onDelete="NO ACTION"
+      onUpdate="NO ACTION"
+      referencedColumnNames="car_id"
+      referencedTableName="cars"/>
+  </changeSet>
+
 </databaseChangeLog>
