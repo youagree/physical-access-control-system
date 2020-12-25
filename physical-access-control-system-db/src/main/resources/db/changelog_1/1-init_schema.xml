@@ -76,6 +76,13 @@
       tableName="employees_cars"/>
   </changeSet>
 
+  <changeSet author="ESV" id="2020-12-23-addUniqueKey-employees_cars">
+    <addUniqueConstraint
+      columnNames="car_id, employee_id"
+      constraintName="uniq_employees_cars"
+      tableName="employees_cars"/>
+  </changeSet>
+
   <changeSet id="2020-12-23-create-sequence-order" author="ESV">
     <preConditions onFail="MARK_RAN">
       <not>
@@ -98,7 +105,7 @@
       <column name="creation_time" type="TIMESTAMP"/>
       <column name="order_weight" type="DOUBLE"/>
       <column name="real_weight" type="DOUBLE"/>
-      <column name="status" type="ENUM('CREATED','IN_PROGRESS','DONE','CANCELED')"/>
+      <column name="status" type="VARCHAR"/>
     </createTable>
   </changeSet>
 

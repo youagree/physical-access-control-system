@@ -3,8 +3,6 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <include file="changelog-v.1-cumulative.xml" relativeToChangelogFile="true"/>
+    <include file="db\changelog_1\changelog-v.1-cumulative.xml" relativeToChangelogFile="true"/>
 
-    <!-- todo relativeToChangelogFile, onFail(подобрать оптимальный параметр, прекондишены на каждое действие,-->
-    <!--не забыть создать сиквенсы(переде ченджсетами, в которых создаются таблицы-->
 </databaseChangeLog>

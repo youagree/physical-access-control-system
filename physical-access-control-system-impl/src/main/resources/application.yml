@@ -16,3 +16,8 @@ spring:
         format_sql: true
         criteria:
           literal_handling_mode: BIND
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/sklbx?currentSchema=squd
+    username: postgres
+    password: 1234
