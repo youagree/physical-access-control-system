@@ -1,6 +1,7 @@
 package ru.unit.techno.access.system.control.entity;
 
 import lombok.Data;
+import ru.unit.techno.access.system.control.enums.OrderType;
 import ru.unit.techno.access.system.control.enums.StatusType;
 
 import javax.persistence.*;
@@ -29,6 +30,9 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     StatusType status;
+
+    @Enumerated(EnumType.STRING)
+    OrderType orderType;
 
     @OneToOne(cascade = CascadeType.ALL)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
