@@ -3,15 +3,7 @@ package ru.unit.techno.access.system.control.entity;
 import lombok.Data;
 import ru.unit.techno.access.system.control.enums.StatusType;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -37,4 +29,9 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     StatusType status;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JoinColumn(name = "weigher_process_id")
+    private WeigherProcess weigherProcessId;
 }
