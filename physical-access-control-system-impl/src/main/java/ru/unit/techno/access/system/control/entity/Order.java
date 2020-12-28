@@ -5,7 +5,7 @@ import ru.unit.techno.access.system.control.enums.OrderType;
 import ru.unit.techno.access.system.control.enums.StatusType;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -19,7 +19,7 @@ public class Order {
     private Long id;
 
     @Column(name = "creation_time")
-    private Timestamp creationTime;
+    private LocalDateTime creationTime;
 
     @Column(name = "order_weight")
     private Double orderWeight;
