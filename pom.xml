@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>physical-access-control-system-impl</module>
+        <module>physical-access-control-system-db</module>
     </modules>
 
     <groupId>ru.physical.access.control</groupId>
